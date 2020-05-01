@@ -49,11 +49,11 @@ class Caltech(VisionDataset):
         - Labels should start from 0, so for Caltech you will have lables 0...100 (excluding the background class) 
         '''
         
-        self.categories = sorted(os.listdir(self.root))
+        self.categories = sorted(os.listdir(self.root)) #order the names of the categories and store them in a list
         self.categories.remove("BACKGROUND_Google")  # this is not a real class
 
-        self.index = []
-        self.y = []
+        self.index = [] #a list containing all the indexes
+        self.y = []     #a list containing all the labels. len(self.y)=len(self.index)
         for (i, c) in enumerate(self.categories):
             n = len(os.listdir(os.path.join(self.root, c)))
             self.index.extend(range(1, n + 1))
@@ -74,10 +74,11 @@ class Caltech(VisionDataset):
          # Image should be a PIL Image
          # label can be int
             
-        image = Image.open(os.path.join(self.root,
-                                      "101_ObjectCategories",
-                                      self.categories[self.y[index]],
-                                      "image_{:04d}.jpg".format(self.index[index])))
+        image = pil_loader(os.path.join(self.root, 
+                                        self.categories[self.y[index]],
+                                        "image_{:04d}.jpg".format(self.index[index])))
+        
+     
         label = self.y[index]
 
         # Applies preprocessing when accessing the image
