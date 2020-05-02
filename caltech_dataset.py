@@ -48,18 +48,41 @@ class Caltech(VisionDataset):
           through the index
         - Labels should start from 0, so for Caltech you will have lables 0...100 (excluding the background class) 
         '''
-        
+        #define self.db : a list containing the paths of the files of our split
+        if self.split == 'train':
+            self.db = os.listdir("train.txt/") #a list of strings: every string is <category>/image_<number>
+        elif self.split == 'test':
+            self.db = os.listdir("test.txt/")  #a list of strings: every string is <category>/image_<number>
+        else:
+            return -1 #error
+       
+        #remove category "BACKGROUND_Google"
+        for i, elem in enumerate(self.db):
+            if "BACKGROUND_Google" in elem:
+                self.db.pop[i] #remove images like "BACKGROUND_Google/image_<number>"
+                
         #define self.categories: it is a list containing the names of all the categories, except for BACKGROUND_Google
         self.categories = sorted(os.listdir(self.root)) #order the names of the categories and store them in a list
         self.categories.remove("BACKGROUND_Google") 
 
-        self.index = [] #a list containing all the indexes
+        self.index = [] #a list containing all the indexes of the specified split
         self.y = []     #a list containing all the labels. len(self.y)=len(self.index)
+        for elem in self.db:
+            words = elem.split('/') #words is a list like [ 'category' , 'image_number' ]
+            img = words[1].split('_') #img is a list like [ 'image' , 'number']
+            self.index.append(int(img[1])) #add the number corresponding to the specific image
+            
+            for i, c in enumerate(self.categories):
+                if c == words[0] : 
+                    self.y.append(i) #add the number corresponding to the label
+            
+        
+        ''' ORIGINAL VERSION
         for (i, c) in enumerate(self.categories):
             n = len(os.listdir(os.path.join(self.root, c))) #n=number of images contained in a specific category
             self.index.extend(range(1, n + 1)) #name of the image goes from 1 to n (within the same category)
             self.y.extend(n * [i]) #label is the same for all images belonging to the same category
-            
+        '''   
             
     def __getitem__(self, index):
         '''
