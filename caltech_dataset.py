@@ -55,7 +55,7 @@ class Caltech(VisionDataset):
                     line = line.strip() #preprocess line
                     self.db.append(line) #a list of strings: every string is <category>/image_<number>
         elif self.split == 'test':
-            with open('Caltech101/test.txt') as f:
+            with open('Caltech101/test.txt') as file:
                 for line in file:
                     line = line.strip() #preprocess line
                     self.db.append(line) #a list of strings: every string is <category>/image_<number>
