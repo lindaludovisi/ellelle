@@ -79,7 +79,7 @@ class Caltech(VisionDataset):
         for elem in raw_db:
             words = elem.split('/') #words is a list like [ 'category' , 'image_number' ]
             img = words[1].split('_') #img is a list like [ 'image' , 'number']
-            num = img[1].split(.) #to remove .jpg | num is a list like [ 'number', 'extension']
+            num = img[1].split('.') #to remove .jpg | num is a list like [ 'number', 'extension']
             self.index.append(int(num[0])) #add the number corresponding to the specific image
             
             for i, c in enumerate(self.categories):
