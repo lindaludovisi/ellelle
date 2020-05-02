@@ -65,7 +65,7 @@ class Caltech(VisionDataset):
         #remove category "BACKGROUND_Google"
         for i, elem in enumerate(self.db):
             if "BACKGROUND_Google" in elem:
-                self.db.pop[i] #remove images like "BACKGROUND_Google/image_<number>"
+                self.db= self.db.pop[i] #remove images like "BACKGROUND_Google/image_<number>"
                 
         #define self.categories: it is a list containing the names of all the categories, except for BACKGROUND_Google
         self.categories = sorted(os.listdir(self.root)) #order the names of the categories and store them in a list
