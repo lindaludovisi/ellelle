@@ -50,9 +50,9 @@ class Caltech(VisionDataset):
         '''
         #define self.db : a list containing the paths of the files of our split
         if self.split == 'train':
-            self.db = os.listdir("train.txt/") #a list of strings: every string is <category>/image_<number>
+            self.db = os.listdir('Caltech101/train.txt') #a list of strings: every string is <category>/image_<number>
         elif self.split == 'test':
-            self.db = os.listdir("test.txt/")  #a list of strings: every string is <category>/image_<number>
+            self.db = os.listdir('Caltech101/test.txt')  #a list of strings: every string is <category>/image_<number>
         else:
             return -1 #error
        
