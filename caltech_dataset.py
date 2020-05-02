@@ -88,8 +88,10 @@ class Caltech(VisionDataset):
                 for i, c in enumerate(self.categories):
                     if c == words[0] : 
                         y.append(i) #add the number corresponding to the label
-
+       
+        print("length of indexes is:")
         print(len(indexes))
+        print("length of labels is:")
         print(len(y))
         self.index = indexes
         self.y = y
