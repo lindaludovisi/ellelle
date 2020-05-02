@@ -57,7 +57,7 @@ class Caltech(VisionDataset):
                     line = line.strip()
                     raw_db.append(line) #a list of strings: every string is <category>/image_<number>
         elif self.split == 'test':
-            my_file = os.path.join(THIS_FOLDER, 'test.txt')
+            #my_file = os.path.join(THIS_FOLDER, 'test.txt')
             with open('text.txt', 'r') as file:
                 for line in file:
                     line = line.strip()
