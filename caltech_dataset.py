@@ -79,8 +79,8 @@ class Caltech(VisionDataset):
         for elem2 in raw_db:
             words = elem2.split('/') #words is a list like [ 'category' , 'image_number' ]
             img = words[1].split('_') #img is a list like [ 'image' , 'number']
-            number = img[1][0:4]
-            indexes.append(int(number)) #add the number corresponding to the specific image
+            number = img[1]
+            indexes.append(number) #add the number corresponding to the specific image
         
             for i, c in enumerate(self.categories):
                 if c == words[0] : 
