@@ -50,12 +50,12 @@ class Caltech(VisionDataset):
         '''
         #define self.db : a list containing the paths of the files of our split
         if self.split == 'train':
-            with open('content/Caltech101/train.txt') as file:
+            with open('train.txt') as file:
                 for line in file:
                     line = line.strip() #preprocess line
                     self.db.append(line) #a list of strings: every string is <category>/image_<number>
         elif self.split == 'test':
-            with open('Caltech101/test.txt') as file:
+            with open('test.txt') as file:
                 for line in file:
                     line = line.strip() #preprocess line
                     self.db.append(line) #a list of strings: every string is <category>/image_<number>
