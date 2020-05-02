@@ -64,7 +64,10 @@ class Caltech(VisionDataset):
                     raw_db.append(line) #a list of strings: every string is <category>/image_<number>
         else:
             return -1 #error
-                
+              
+        #sort the names of the files by alphabetical order
+        raw_df = sorted(raw_df)
+        
         #define self.categories: it is a list containing the names of all the categories, except for BACKGROUND_Google
         self.categories = sorted(os.listdir(self.root)) #order the names of the categories and store them in a list
         self.categories.remove("BACKGROUND_Google") 
