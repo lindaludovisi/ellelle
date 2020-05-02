@@ -89,6 +89,8 @@ class Caltech(VisionDataset):
                     if c == words[0] : 
                         y.append(i) #add the number corresponding to the label
 
+        print(len(indexes))
+        print(len(y))
         self.index = indexes
         self.y = y
         
