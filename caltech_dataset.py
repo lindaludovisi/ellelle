@@ -48,12 +48,16 @@ class Caltech(VisionDataset):
           through the index
         - Labels should start from 0, so for Caltech you will have lables 0...100 (excluding the background class) 
         '''
+        THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+
         #define self.db : a list containing the paths of the files of our split
         if self.split == 'train':
-            with open("Caltech101/train.txt", 'r') as file:
+            my_file = os.path.join(THIS_FOLDER, 'train.txt')
+            with open(my_file, 'r') as file:
                 self.db = file.readlines() #a list of strings: every string is <category>/image_<number>
         elif self.split == 'test':
-            with open("Caltech101/test.txt", 'r') as file:
+            my_file = os.path.join(THIS_FOLDER, 'test.txt')
+            with open(my_file, 'r') as file:
                 self.db = file.readlines() #a list of strings: every string is <category>/image_<number>
         else:
             return -1 #error
