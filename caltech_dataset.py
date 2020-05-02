@@ -54,18 +54,18 @@ class Caltech(VisionDataset):
         if self.split == 'train':
             my_file = os.path.join(THIS_FOLDER, 'train.txt')
             with open(my_file, 'r') as file:
-                self.db = file.readlines() #a list of strings: every string is <category>/image_<number>
+                raw_db = file.readlines() #a list of strings: every string is <category>/image_<number>
         elif self.split == 'test':
             my_file = os.path.join(THIS_FOLDER, 'test.txt')
             with open(my_file, 'r') as file:
-                self.db = file.readlines() #a list of strings: every string is <category>/image_<number>
+                raw_db = file.readlines() #a list of strings: every string is <category>/image_<number>
         else:
             return -1 #error
        
         #remove category "BACKGROUND_Google"
-        for i, elem in enumerate(self.db):
+        for i, elem in enumerate(raw_db):
             if "BACKGROUND_Google" in elem:
-                self.db= self.db.pop[i] #remove images like "BACKGROUND_Google/image_<number>"
+                raw_db= raw_db.pop[i] #remove images like "BACKGROUND_Google/image_<number>"
                 
         #define self.categories: it is a list containing the names of all the categories, except for BACKGROUND_Google
         self.categories = sorted(os.listdir(self.root)) #order the names of the categories and store them in a list
@@ -73,7 +73,7 @@ class Caltech(VisionDataset):
 
         self.index = [] #a list containing all the indexes of the specified split
         self.y = []     #a list containing all the labels. len(self.y)=len(self.index)
-        for elem in self.db:
+        for elem in raw_db:
             words = elem.split('/') #words is a list like [ 'category' , 'image_number' ]
             img = words[1].split('_') #img is a list like [ 'image' , 'number']
             self.index.append(int(img[1])) #add the number corresponding to the specific image
