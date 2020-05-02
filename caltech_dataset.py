@@ -20,7 +20,7 @@ class Caltech(VisionDataset):
     '''
     
     Args:
-        root (string): Root directory of dataset where directory
+        root (string): Root directory of dataset 'Caltech101/101_ObjectCategories'
        
         split (string): Specifies if we are working with the train or the test set.
         
@@ -49,15 +49,16 @@ class Caltech(VisionDataset):
         - Labels should start from 0, so for Caltech you will have lables 0...100 (excluding the background class) 
         '''
         
+        #define self.categories: it is a list containing the names of all the categories, except for BACKGROUND_Google
         self.categories = sorted(os.listdir(self.root)) #order the names of the categories and store them in a list
-        self.categories.remove("BACKGROUND_Google")  # this is not a real class
+        self.categories.remove("BACKGROUND_Google") 
 
         self.index = [] #a list containing all the indexes
         self.y = []     #a list containing all the labels. len(self.y)=len(self.index)
         for (i, c) in enumerate(self.categories):
-            n = len(os.listdir(os.path.join(self.root, c)))
-            self.index.extend(range(1, n + 1))
-            self.y.extend(n * [i])
+            n = len(os.listdir(os.path.join(self.root, c))) #n=number of images contained in a specific category
+            self.index.extend(range(1, n + 1)) #name of the image goes from 1 to n (within the same category)
+            self.y.extend(n * [i]) #label is the same for all images belonging to the same category
             
             
     def __getitem__(self, index):
