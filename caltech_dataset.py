@@ -65,8 +65,7 @@ class Caltech(VisionDataset):
         else:
             return -1 #error
               
-        #sort the names of the files by alphabetical order
-        raw_df = sorted(raw_df)
+  
         
         #define self.categories: it is a list containing the names of all the categories, except for BACKGROUND_Google
         self.categories = sorted(os.listdir(self.root)) #order the names of the categories and store them in a list
@@ -74,7 +73,7 @@ class Caltech(VisionDataset):
 
         indexes = [] #a list containing all the indexes of the specified split
         y = []     #a list containing all the labels. len(self.y)=len(self.index)
-        for elem in raw_db:
+        for elem in sorted(raw_db):
             if elem[-3:] == 'jpg' : #check extension
                 words = elem.split('/') #words is a list like [ 'category' , 'image_number' ]
                 for i, c in enumerate(self.categories):
