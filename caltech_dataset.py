@@ -74,18 +74,19 @@ class Caltech(VisionDataset):
         self.categories = sorted(os.listdir(self.root)) #order the names of the categories and store them in a list
         self.categories.remove("BACKGROUND_Google") 
 
-        self.index = [] #a list containing all the indexes of the specified split
-        self.y = []     #a list containing all the labels. len(self.y)=len(self.index)
+        indexes = [] #a list containing all the indexes of the specified split
+        y = []     #a list containing all the labels. len(self.y)=len(self.index)
         for elem in raw_db:
             words = elem.split('/') #words is a list like [ 'category' , 'image_number' ]
             img = words[1].split('_') #img is a list like [ 'image' , 'number']
-            num = img[1]
-            self.index.append(int(num[0:4])) #add the number corresponding to the specific image
-            
+            img = img[1]
+            indexes.append(int(img[0:4])) #add the number corresponding to the specific image
+        
             for i, c in enumerate(self.categories):
                 if c == words[0] : 
-                    self.y.append(i) #add the number corresponding to the label
-            
+                    y.append(i) #add the number corresponding to the label
+        self.index = indexes
+        self.y = y
         
         ''' ORIGINAL VERSION
         for (i, c) in enumerate(self.categories):
