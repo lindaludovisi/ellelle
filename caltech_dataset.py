@@ -79,8 +79,8 @@ class Caltech(VisionDataset):
                         y.append(i) #add the number corresponding to the label
                         
                         img = words[1].split('_') #img is a list like [ 'image' , 'number']
-                        number = img[1]
-                        indexes.append(number) #add the number corresponding to the specific image
+                        number = img[1][0:4]
+                        indexes.append(int(number)) #add the number corresponding to the specific image
        
         print("length of indexes is:")
         print(len(indexes))
