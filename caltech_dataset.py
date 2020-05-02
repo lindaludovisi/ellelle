@@ -79,7 +79,7 @@ class Caltech(VisionDataset):
         y = []     #a list containing all the labels. len(self.y)=len(self.index)
         for elem2 in raw_db:
             #check extension
-            if elem2[-3:] == jpg:
+            if elem2[-3:] == 'jpg':
                 words = elem2.split('/') #words is a list like [ 'category' , 'image_number' ]
                 img = words[1].split('_') #img is a list like [ 'image' , 'number']
                 number = img[1]
