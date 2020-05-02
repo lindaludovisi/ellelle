@@ -78,15 +78,17 @@ class Caltech(VisionDataset):
         indexes = [] #a list containing all the indexes of the specified split
         y = []     #a list containing all the labels. len(self.y)=len(self.index)
         for elem2 in raw_db:
-            words = elem2.split('/') #words is a list like [ 'category' , 'image_number' ]
-            img = words[1].split('_') #img is a list like [ 'image' , 'number']
-            number = img[1]
-            indexes.append(number) #add the number corresponding to the specific image
-        
-            for i, c in enumerate(self.categories):
-                if c == words[0] : 
-                    y.append(i) #add the number corresponding to the label
-        
+            #check extension
+            if elem2[-3:] == jpg:
+                words = elem2.split('/') #words is a list like [ 'category' , 'image_number' ]
+                img = words[1].split('_') #img is a list like [ 'image' , 'number']
+                number = img[1]
+                indexes.append(number) #add the number corresponding to the specific image
+
+                for i, c in enumerate(self.categories):
+                    if c == words[0] : 
+                        y.append(i) #add the number corresponding to the label
+
         self.index = indexes
         self.y = y
         
