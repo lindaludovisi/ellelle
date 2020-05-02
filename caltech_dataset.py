@@ -68,7 +68,7 @@ class Caltech(VisionDataset):
         #remove category "BACKGROUND_Google"
         for elem in raw_db:
             if "BACKGROUND_Google" in elem:
-                print(elem)
+                #print(elem)
                 raw_db.remove(elem) #remove images like "BACKGROUND_Google/image_<number>"
                 
         #define self.categories: it is a list containing the names of all the categories, except for BACKGROUND_Google
