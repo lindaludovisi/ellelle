@@ -39,6 +39,7 @@ class Caltech(VisionDataset):
         self.split = split # This defines the split you are going to use
                            # (split files are called 'train.txt' and 'test.txt')
         self.root = root    #root = 'Caltech101/101_ObjectCategories'
+        self.transform = transform
        
         '''
         - Here you should implement the logic for reading the splits files and accessing elements
