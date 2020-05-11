@@ -91,13 +91,7 @@ class Caltech(VisionDataset):
         print(len(y))
         self.index = indexes
         self.y = y
-        
-        ''' ORIGINAL VERSION
-        for (i, c) in enumerate(self.categories):
-            n = len(os.listdir(os.path.join(self.root, c))) #n=number of images contained in a specific category
-            self.index.extend(range(1, n + 1)) #name of the image goes from 1 to n (within the same category)
-            self.y.extend(n * [i]) #label is the same for all images belonging to the same category
-        '''   
+    
             
     def __getitem__(self, index):
         '''
